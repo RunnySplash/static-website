@@ -2,10 +2,10 @@ from enum import Enum
 
 # different type of inline text
 class TextType(Enum):
-    PLAIN_TEXT = "plain"
-    BOLD_TEXT = "bold"
-    ITALIC_TEXT = "italic"
-    CODE_TEXT = "code"
+    PLAIN = "plain"
+    BOLD = "bold"
+    ITALIC = "italic"
+    CODE = "code"
     LINK = "link"
     IMAGE = "image"
 
@@ -14,7 +14,8 @@ class TextType(Enum):
 class TextNode():
     
     # constructor
-    def __init__(self, TEXT, TEXT_TYPE, URL):
+    # Only link and images require URL field (None is used for others)
+    def __init__(self, TEXT, TEXT_TYPE, URL=None):
         self.text = TEXT
         self.text_type = TEXT_TYPE
         self.url = URL
