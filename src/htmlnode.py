@@ -84,3 +84,36 @@ class LeafNode(HTMLNode):
             "})"
         )
 
+
+
+# ParentNode(tag, children, props)
+class ParentNode(HTMLNode):
+    
+    def __init__(
+        self,
+        tag:str,
+        children: list["HTMLNode"],
+        props: dict[str, str] | None=None
+    ) -> None:
+        super().__init__(tag, None, children, props)
+
+
+    # retrn str repr of HTML tag of node and its children
+    def to_html(self) -> str:
+
+        html = ""
+
+
+        if self.tag is None:
+            raise ValueError("A tag must be provided")
+
+        if self.children is None:
+            raise ValueError("children must be provided")
+
+        html += f'<{self.tag}>'
+        for child in self.children:
+            html += child.to_html()
+
+        html += f'</{self.tag}>'
+
+        return html
